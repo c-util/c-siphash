@@ -214,3 +214,33 @@ _public_ uint64_t c_siphash_finalize(CSipHash *state) {
 
         return state->v0 ^ state->v1 ^ state->v2  ^ state->v3;
 }
+
+/**
+ * c_siphash_hash() - hash data blob
+ * @seed:               128bit seed
+ * @bytes:              byte array to hash
+ * @n_bytes:            number of bytes to hash
+ *
+ * This produces the SipHash24 hash value for the input @bytes / @n_bytes,
+ * using the seed provided as @seed.
+ *
+ * This is functionally equivalent to:
+ *
+ *         CSipHash state;
+ *         c_siphash_init(&state, seed);
+ *         c_siphash_apend(&state, bytes, n_bytes);
+ *         return c_siphash_finalize(&state);
+ *
+ * Unlike the streaming API, this is a one-shot call suitable for any data that
+ * is available in-memory at the same time.
+ *
+ * Return: 64bit hash value
+ */
+_public_ uint64_t c_siphash_hash(const uint8_t seed[16], const uint8_t *bytes, size_t n_bytes) {
+        CSipHash state;
+
+        c_siphash_init(&state, seed);
+        c_siphash_append(&state, bytes, n_bytes);
+
+        return c_siphash_finalize(&state);
+}

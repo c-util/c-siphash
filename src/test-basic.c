@@ -48,6 +48,9 @@ static void do_reference_test(const uint8_t *in, size_t len, const uint8_t *key)
                         assert(out == 0xa129ca6149be45e5);
                 }
         }
+
+        /* verify c_siphash_hash() produces the same result */
+        assert(out == c_siphash_hash(key, in, len));
 }
 
 static void test_reference(void) {

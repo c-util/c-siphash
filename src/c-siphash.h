@@ -9,7 +9,9 @@
  * piecemeal.
  *
  * A streaming-capable hash state is represented by the "CSipHash" structure,
- * which should be initialized with a unique seed before use.
+ * which should be initialized with a unique seed before use. If streaming
+ * capabilities are not required, c_siphash_hash() provides a simple one-shot
+ * API.
  */
 
 #ifdef __cplusplus
@@ -50,6 +52,8 @@ struct CSipHash {
 void c_siphash_init(CSipHash *state, const uint8_t seed[16]);
 void c_siphash_append(CSipHash *state, const uint8_t *bytes, size_t n_bytes);
 uint64_t c_siphash_finalize(CSipHash *state);
+
+uint64_t c_siphash_hash(const uint8_t seed[16], const uint8_t *bytes, size_t n_bytes);
 
 #ifdef __cplusplus
 }
