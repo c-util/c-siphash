@@ -1,4 +1,4 @@
-c-siphash - Standalone SipHash24 Implementation in Standard ISO-C11
+c-siphash - Standalone SipHash Implementation in Standard ISO-C11
 
 DETAILS:
         https://github.com/c-util/c-siphash
