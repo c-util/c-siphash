@@ -1,5 +1,16 @@
 c-siphash - Standalone SipHash Implementation in Standard ISO-C11
 
+ABOUT:
+        The c-siphash project is a standalone implementation of SipHash in
+        Standard ISO-C11. It provides a streaming-capable API to compute data
+        hashes according to the SipHash algorithm.
+
+        To use siphash, include c-siphash.h and link to the libcsiphash.so
+        library. A pkg-config entry is provided as well.
+
+        For API documentation, see the c-siphash.h header file, as well as the
+        docbook comments for each function.
+
 DETAILS:
         https://github.com/c-util/c-siphash
 
@@ -16,3 +27,27 @@ GITWEB:
 LICENSE:
         Apache Software License 2.0 (LICENSE)
         See COPYING for details.
+
+REQUIREMENTS:
+        The requirements for c-siphash are:
+
+            libc (e.g., glibc >= 2.16)
+
+        At build-time, the following software is required:
+
+            meson >= 0.41
+            pkg-config >= 0.29
+
+INSTALL:
+        The meson build-system is used for dbus-broker. Contact upstream
+        documentation for detailed help. In most situations the following
+        commands are sufficient to build and install dbus-broker from source:
+
+            $ mkdir build
+            $ cd build
+            $ meson setup . ..
+            $ ninja
+            $ ninja test
+            # ninja install
+
+        No custom configuration options are available.
