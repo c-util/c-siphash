@@ -25,8 +25,8 @@ GITWEB:
         https://github.com/c-util/c-siphash
 
 LICENSE:
-        Apache Software License 2.0 (LICENSE)
-        See COPYING for details.
+        Apache Software License 2.0
+        See LICENSE and AUTHORS for details.
 
 REQUIREMENTS:
         The requirements for c-siphash are:
