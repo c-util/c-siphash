@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Standalone SipHash Implementation in Standard ISO-C11
+ * Streaming-capable SipHash Implementation
  *
  * This library provides a SipHash API, that is fully implemented in ISO-C11
  * and has no external dependencies. The library performs no memory allocation,

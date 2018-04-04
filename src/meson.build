@@ -42,7 +42,7 @@ if not meson.is_subproject()
                 version: meson.project_version(),
                 name: 'libcsiphash',
                 filebase: 'libcsiphash',
-                description: 'Standalone SipHash Implementation',
+                description: 'Streaming-capable SipHash Implementation',
         )
 endif
 
