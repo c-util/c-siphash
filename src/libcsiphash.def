@@ -1,6 +1,9 @@
-LIBRARY csiphash-1-0
+LIBRARY csiphash-2-0
 EXPORTS
         c_siphash_init
-        c_siphash_append
-        c_siphash_finalize
-        c_siphash_hash
+        c_siphash_append_13
+        c_siphash_append_24
+        c_siphash_finalize_13
+        c_siphash_finalize_24
+        c_siphash_hash_13
+        c_siphash_hash_24

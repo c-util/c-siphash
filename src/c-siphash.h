@@ -50,10 +50,18 @@ struct CSipHash {
 #define C_SIPHASH_NULL {0}
 
 void c_siphash_init(CSipHash *state, const uint8_t seed[16]);
-void c_siphash_append(CSipHash *state, const uint8_t *bytes, size_t n_bytes);
-uint64_t c_siphash_finalize(CSipHash *state);
 
-uint64_t c_siphash_hash(const uint8_t seed[16], const uint8_t *bytes, size_t n_bytes);
+void c_siphash_append_13(CSipHash *state, const uint8_t *bytes, size_t n_bytes);
+uint64_t c_siphash_finalize_13(CSipHash *state);
+uint64_t c_siphash_hash_13(const uint8_t seed[16], const uint8_t *bytes, size_t n_bytes);
+
+void c_siphash_append_24(CSipHash *state, const uint8_t *bytes, size_t n_bytes);
+uint64_t c_siphash_finalize_24(CSipHash *state);
+uint64_t c_siphash_hash_24(const uint8_t seed[16], const uint8_t *bytes, size_t n_bytes);
+
+#define c_siphash_append c_siphash_append_24
+#define c_siphash_finalize c_siphash_finalize_24
+#define c_siphash_hash c_siphash_hash_24
 
 #ifdef __cplusplus
 }
