@@ -4,3 +4,6 @@ EXPORTS
         c_siphash_append
         c_siphash_finalize
         c_siphash_hash
+        c_siphash_append_13
+        c_siphash_finalize_13
+        c_siphash_hash_13
