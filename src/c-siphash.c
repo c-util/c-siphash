@@ -8,7 +8,7 @@
  *
  * So far, only SipHash24 is implemented, since there was no need for other
  * parameters. However, adjusted c_siphash_append_X() and
- * C_siphash_finalize_Y() can be easily provided, if required.
+ * c_siphash_finalize_Y() can be easily provided, if required.
  */
 
 #include <c-stdaux.h>
