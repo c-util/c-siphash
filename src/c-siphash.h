@@ -47,7 +47,7 @@ struct CSipHash {
         size_t n_bytes;
 };
 
-#define C_SIPHASH_NULL {}
+#define C_SIPHASH_NULL {0}
 
 void c_siphash_init(CSipHash *state, const uint8_t seed[16]);
 void c_siphash_append(CSipHash *state, const uint8_t *bytes, size_t n_bytes);
