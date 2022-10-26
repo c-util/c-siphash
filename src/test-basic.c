@@ -24,12 +24,12 @@ static void do_reference_test(const uint8_t *in, size_t len, const uint8_t *key)
         c_assert(state.v1 == 0x6b617f6d656e6665);
         c_assert(state.v2 == 0x6b7f62616d677361);
         c_assert(state.v3 == 0x7b6b696e727e6c7b);
-        c_siphash_append(&state, in, len);
+        c_siphash_append_24(&state, in, len);
         c_assert(state.v0 == 0x4a017198de0a59e0);
         c_assert(state.v1 == 0x0d52f6f62a4f59a4);
         c_assert(state.v2 == 0x634cb3577b01fd3d);
         c_assert(state.v3 == 0xa5224d6f55c7d9c8);
-        out = c_siphash_finalize(&state);
+        out = c_siphash_finalize_24(&state);
         c_assert(out == 0xa129ca6149be45e5);
         c_assert(state.v0 == 0xf6bcd53893fecff1);
         c_assert(state.v1 == 0x54b9964c7ea0d937);
@@ -41,16 +41,16 @@ static void do_reference_test(const uint8_t *in, size_t len, const uint8_t *key)
         for (i = 0; i < len; i++) {
                 for (j = i; j < len; j++) {
                         c_siphash_init(&state, key);
-                        c_siphash_append(&state, in, i);
-                        c_siphash_append(&state, &in[i], j - i);
-                        c_siphash_append(&state, &in[j], len - j);
-                        out = c_siphash_finalize(&state);
+                        c_siphash_append_24(&state, in, i);
+                        c_siphash_append_24(&state, &in[i], j - i);
+                        c_siphash_append_24(&state, &in[j], len - j);
+                        out = c_siphash_finalize_24(&state);
                         c_assert(out == 0xa129ca6149be45e5);
                 }
         }
 
         /* verify c_siphash_hash() produces the same result */
-        c_assert(out == c_siphash_hash(key, in, len));
+        c_assert(out == c_siphash_hash_24(key, in, len));
 }
 
 static void test_reference(void) {
@@ -87,10 +87,10 @@ static void test_short_hashes(void) {
 
         /* hashing 1, 2, 3, 4, 5, ..., 16 bytes, with the byte after the buffer different */
         for (i = 1; i <= sizeof one; i++) {
-                c_siphash_append(&state1, one, i);
+                c_siphash_append_24(&state1, one, i);
 
                 two[i-1] = one[i-1];
-                c_siphash_append(&state2, two, i);
+                c_siphash_append_24(&state2, two, i);
 
                 c_assert(memcmp(&state1, &state2, sizeof state1) == 0);
         }
@@ -100,12 +100,12 @@ static void test_short_hashes(void) {
                 memset(two, 0, sizeof(two));
 
                 for (j = 1; j <= sizeof one; j++) {
-                        c_siphash_append(&state1, one, i);
-                        c_siphash_append(&state1, one, j);
+                        c_siphash_append_24(&state1, one, i);
+                        c_siphash_append_24(&state1, one, j);
 
-                        c_siphash_append(&state2, one, i);
+                        c_siphash_append_24(&state2, one, i);
                         two[j-1] = one[j-1];
-                        c_siphash_append(&state2, two, j);
+                        c_siphash_append_24(&state2, two, j);
 
                         c_assert(memcmp(&state1, &state2, sizeof state1) == 0);
                 }

@@ -17,11 +17,11 @@ static void test_api(void) {
         uint64_t hash1, hash2;
 
         c_siphash_init(&state, seed);
-        c_siphash_append(&state, NULL, 0);
-        hash1 = c_siphash_finalize(&state);
+        c_siphash_append_24(&state, NULL, 0);
+        hash1 = c_siphash_finalize_24(&state);
         assert(hash1 == 12552310112479190712ULL);
 
-        hash2 = c_siphash_hash(seed, NULL, 0);
+        hash2 = c_siphash_hash_24(seed, NULL, 0);
         assert(hash1 == hash2);
 }
 
